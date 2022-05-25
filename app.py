@@ -14,9 +14,14 @@ daily_picks_df = daily_picks_df.set_index("Date")
 
 st.title("2022 Playoff Progressive")
 
-st.subheader("Graph")
-fig = px.line(data, title="Total Points over Time")
+st.subheader("Total Points")
+fig = px.line(data)
 st.plotly_chart(fig)
+
+st.subheader("Place Over Time")
+data_rank = data.rank(axis=1, method="dense", ascending=False)
+fig_rank = px.line(data_rank)
+st.plotly_chart(fig_rank)
 
 st.subheader("Stat Analysis")
 st.table(daily_picks_df.describe())
